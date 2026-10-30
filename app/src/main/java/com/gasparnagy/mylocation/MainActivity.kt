@@ -33,9 +33,6 @@ class MainActivity : AppCompatActivity(), LocationTracker.Listener {
         }
 
         binding.shareButton.setOnClickListener { shareLocation() }
-        binding.copyButton.setOnClickListener {
-            currentLocation?.let { Clipboard.copyLocation(this, it) }
-        }
     }
 
     override fun onStart() {
@@ -66,7 +63,6 @@ class MainActivity : AppCompatActivity(), LocationTracker.Listener {
             getString(R.string.status_updated, time) + "\n" + getString(R.string.status_coarse_only)
         }
         binding.shareButton.isEnabled = true
-        binding.copyButton.isEnabled = true
     }
 
     override fun onProblem(message: String, action: () -> Unit) {

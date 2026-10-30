@@ -16,7 +16,6 @@
     <string name="status_location_off">Location (GPS) is turned off.\nA helymeghatározás (GPS) ki van kapcsolva.</string>
     <string name="enable_location">Enable location (helymeghatározás bekapcsolása)</string>
     <string name="share_text">My location: %1$s, %2$s (accuracy ±%3$d m)\n%4$s</string>
-    <string name="copy">Copy (másolás)</string>
     <string name="copy_now">Copy now (másolás most)</string>
     <string name="cancel">Cancel (mégse)</string>
     <string name="copied">Copied! Paste it into the chat.\nMásolva! Illeszd be a beszélgetésbe.</string>
