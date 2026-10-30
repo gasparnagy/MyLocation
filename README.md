@@ -24,3 +24,7 @@ Requires JDK 17+ and the Android SDK (API 35). Open the project in Android Studi
 
 The APK is created as `app/build/outputs/apk/debug/my-location.apk`. The GitHub Actions workflow also builds it and
 attaches the APK as a build artifact.
+
+## Release
+Push a version tag (e.g. `git tag v1.0 && git push origin v1.0`) and the workflow creates a GitHub
+release with `my-location.apk` attached.
