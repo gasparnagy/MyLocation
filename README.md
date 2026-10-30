@@ -22,5 +22,5 @@ Requires JDK 17+ and the Android SDK (API 35). Open the project in Android Studi
 ./gradlew assembleDebug
 ```
 
-The APK is created in `app/build/outputs/apk/debug/`. The GitHub Actions workflow also builds it and
+The APK is created as `app/build/outputs/apk/debug/my-location.apk`. The GitHub Actions workflow also builds it and
 attaches the APK as a build artifact.
