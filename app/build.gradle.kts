@@ -11,13 +11,28 @@ android {
         applicationId = "com.gasparnagy.mylocation"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
+    }
+
+    // The release key is provided by CI (see .github/workflows/build.yml). Without it,
+    // release builds fall back to the local debug key.
+    val releaseKeystore = System.getenv("SIGNING_KEYSTORE_PATH")?.let { file(it) }
+    signingConfigs {
+        if (releaseKeystore != null) {
+            create("release") {
+                storeFile = releaseKeystore
+                storePassword = System.getenv("SIGNING_KEYSTORE_PASSWORD")
+                keyAlias = "mylocation"
+                keyPassword = System.getenv("SIGNING_KEYSTORE_PASSWORD")
+            }
+        }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
         }
     }
 

@@ -33,3 +33,7 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Release signing key (never commit)
+signing/
+*.p12
