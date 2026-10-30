@@ -26,5 +26,6 @@ The APK is created as `app/build/outputs/apk/debug/my-location.apk`. The GitHub 
 attaches the APK as a build artifact.
 
 ## Release
-Push a version tag (e.g. `git tag v1.0 && git push origin v1.0`) and the workflow creates a GitHub
-release with `my-location.apk` attached.
+Either push a version tag (e.g. `git tag v1.0 && git push origin v1.0`), or run the "Build APK"
+workflow manually from the Actions tab with a `release_tag` (e.g. `v1.0`). The workflow creates a
+GitHub release with `my-location.apk` attached.
