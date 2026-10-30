@@ -1,19 +1,19 @@
 <resources>
     <string name="app_name">My Location</string>
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
-    <string name="precision">Precision</string>
+    <string name="latitude">Latitude (szélesség)</string>
+    <string name="longitude">Longitude (hosszúság)</string>
+    <string name="precision">Precision (pontosság)</string>
     <string name="no_value">—</string>
-    <string name="share">Share location</string>
-    <string name="share_chooser_title">Share location via</string>
-    <string name="precision_good">Good (±%1$d m)</string>
-    <string name="precision_average">Average (±%1$d m)</string>
-    <string name="precision_poor">Poor (±%1$d m)</string>
-    <string name="status_waiting">Waiting for GPS fix…</string>
-    <string name="status_updated">Last update: %1$s</string>
-    <string name="status_permission_denied">Location permission is required to show your position.</string>
-    <string name="status_coarse_only">Only approximate location was granted. Allow precise location for GPS accuracy.</string>
-    <string name="status_location_off">Location (GPS) is turned off.</string>
-    <string name="enable_location">Enable location</string>
+    <string name="share">Share location (hely megosztása)</string>
+    <string name="share_chooser_title">Share location via (megosztás ezzel)</string>
+    <string name="precision_good">Good (jó) ±%1$d m</string>
+    <string name="precision_average">Average (közepes) ±%1$d m</string>
+    <string name="precision_poor">Poor (gyenge) ±%1$d m</string>
+    <string name="status_waiting">Waiting for GPS fix…\nVárakozás a GPS-jelre…</string>
+    <string name="status_updated">Last update (utolsó frissítés): %1$s</string>
+    <string name="status_permission_denied">Location permission is required to show your position.\nA pozíció megjelenítéséhez helymeghatározási engedély szükséges.</string>
+    <string name="status_coarse_only">Only approximate location was granted. Allow precise location for GPS accuracy.\nCsak hozzávetőleges helymeghatározás engedélyezett. A GPS-pontossághoz engedélyezd a pontos helyet.</string>
+    <string name="status_location_off">Location (GPS) is turned off.\nA helymeghatározás (GPS) ki van kapcsolva.</string>
+    <string name="enable_location">Enable location (helymeghatározás bekapcsolása)</string>
     <string name="share_text">My location: %1$s, %2$s (accuracy ±%3$d m)\n%4$s</string>
 </resources>
