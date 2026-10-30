@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.gasparnagy.mylocation",
+      "sha256_cert_fingerprints": [
+        "CC:62:9D:2D:A1:2D:07:C9:2C:7D:F2:5D:CE:55:4D:CC:E3:09:1D:70:08:85:D6:F1:88:46:06:D0:78:49:F1:19"
+      ]
+    }
+  }
+]

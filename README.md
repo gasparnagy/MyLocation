@@ -22,10 +22,35 @@ Requires JDK 17+ and the Android SDK (API 35). Open the project in Android Studi
 ./gradlew assembleDebug
 ```
 
-The APK is created as `app/build/outputs/apk/debug/my-location.apk`. The GitHub Actions workflow also builds it and
+Debug builds are created as `app/build/outputs/apk/debug/my-location.apk`. The GitHub Actions workflow also builds it and
 attaches the APK as a build artifact.
 
+## Signing
+CI builds the release APK (`app/build/outputs/apk/release/my-location.apk`) signed with a fixed release
+key, so new versions install as updates over older ones. The key comes from two repository secrets:
+
+- `SIGNING_KEYSTORE_BASE64`: the PKCS12 keystore (key alias `mylocation`), base64-encoded
+- `SIGNING_KEYSTORE_PASSWORD`: the keystore (and key) password
+
+Without these secrets, normal CI builds fall back to a temporary debug key and releases fail.
+Keep a backup of the keystore: if it is lost, users have to uninstall the app to install a new version.
+
+Release key SHA-256 fingerprint:
+`CC:62:9D:2D:A1:2D:07:C9:2C:7D:F2:5D:CE:55:4D:CC:E3:09:1D:70:08:85:D6:F1:88:46:06:D0:78:49:F1:19`
+
+## Website
+The `website/` folder holds the files for https://mylocation.gasparnagy.com. Upload its contents to
+the web root of that domain:
+
+- `index.html`: download page, always links to the APK of the latest GitHub release
+- `where/index.html`: the "Where are you?" page that can be sent to family members
+- `.well-known/assetlinks.json`: proves that the app may open `mylocation.gasparnagy.com` links.
+  It must be reachable at `https://mylocation.gasparnagy.com/.well-known/assetlinks.json` over
+  HTTPS, without redirects, with `Content-Type: application/json`. Some upload tools skip folders
+  starting with a dot, so check that it was uploaded. If the release key changes, update the
+  fingerprint in this file.
+
 ## Release
-Either push a version tag (e.g. `git tag v1.0 && git push origin v1.0`), or run the "Build APK"
-workflow manually from the Actions tab with a `release_tag` (e.g. `v1.0`). The workflow creates a
+Either push a version tag (e.g. `git tag v1.1 && git push origin v1.1`), or run the "Build APK"
+workflow manually from the Actions tab with a `release_tag` (e.g. `v1.1`). The workflow creates a
 GitHub release with `my-location.apk` attached.
