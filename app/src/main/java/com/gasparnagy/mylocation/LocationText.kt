@@ -4,7 +4,11 @@ import android.content.Context
 import android.location.Location
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.Locale
+import kotlin.math.abs
 import kotlin.math.roundToInt
 
 /** [label] is used on the bilingual main screen, [quickLabel] on the English-only quick share dialog. */
@@ -32,11 +36,32 @@ object LocationText {
     fun precision(context: Context, location: Location): String =
         context.getString(Precision.of(location).label, location.accuracy.roundToInt())
 
-    /** The text that is shared or copied: coordinates, accuracy and a Google Maps link. */
+    private val timeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm", Locale.US)
+
+    /** Time of the fix in local time with its UTC offset, e.g. "2026-10-31 21:07 UTC+1". */
+    fun timestamp(epochMillis: Long): String {
+        val time = Instant.ofEpochMilli(epochMillis).atZone(ZoneId.systemDefault())
+        val offsetMinutes = time.offset.totalSeconds / 60
+        val sign = if (offsetMinutes < 0) "-" else "+"
+        val hours = abs(offsetMinutes) / 60
+        val minutes = abs(offsetMinutes) % 60
+        val offset = when {
+            offsetMinutes == 0 -> "UTC"
+            minutes == 0 -> "UTC$sign$hours"
+            else -> String.format(Locale.US, "UTC%s%d:%02d", sign, hours, minutes)
+        }
+        return "${timeFormatter.format(time)} $offset"
+    }
+
+    /**
+     * The text that is shared or copied: a Google Maps link, coordinates, accuracy and time of the fix.
+     * Kept short (5 decimals is ~1 m) so it fits in a single SMS. The comma in the link is encoded
+     * because some keyboards (e.g. SwiftKey) cut detected URLs at a comma.
+     */
     fun shareText(context: Context, location: Location): String {
-        val lat = coordinate(location.latitude)
-        val lon = coordinate(location.longitude)
-        val mapsUrl = "https://www.google.com/maps/search/?api=1&query=$lat%2C$lon"
-        return context.getString(R.string.share_text, lat, lon, location.accuracy.roundToInt(), mapsUrl)
+        val lat = String.format(Locale.US, "%.5f", location.latitude)
+        val lon = String.format(Locale.US, "%.5f", location.longitude)
+        val mapsUrl = "https://maps.google.com/?q=$lat%2C$lon"
+        return context.getString(R.string.share_text, lat, lon, location.accuracy.roundToInt(), timestamp(location.time), mapsUrl)
     }
 }

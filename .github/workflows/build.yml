@@ -1,7 +1,10 @@
 name: Build APK
 
 on:
+  # Branches are built through their pull request; pushes only build main and version tags.
   push:
+    branches: [main]
+    tags: ['v*']
   pull_request:
   workflow_dispatch:
     inputs:
