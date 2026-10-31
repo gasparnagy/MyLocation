@@ -15,7 +15,7 @@
     <string name="status_coarse_only">Only approximate location was granted. Allow precise location for GPS accuracy.\nCsak hozzávetőleges helymeghatározás engedélyezett. A GPS-pontossághoz engedélyezd a pontos helyet.</string>
     <string name="status_location_off">Location (GPS) is turned off.\nA helymeghatározás (GPS) ki van kapcsolva.</string>
     <string name="enable_location">Enable location (helymeghatározás bekapcsolása)</string>
-    <string name="share_text">My location: %1$s, %2$s (accuracy ±%3$d m)\n%4$s</string>
+    <string name="share_text">%5$s\nMy location: %1$s, %2$s (±%3$d m)\nTime: %4$s</string>
 
     <!-- Quick share dialog ("Where are you?" link): English only -->
     <string name="quick_title">Where are you?</string>
