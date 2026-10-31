@@ -16,10 +16,19 @@
     <string name="status_location_off">Location (GPS) is turned off.\nA helymeghatározás (GPS) ki van kapcsolva.</string>
     <string name="enable_location">Enable location (helymeghatározás bekapcsolása)</string>
     <string name="share_text">My location: %1$s, %2$s (accuracy ±%3$d m)\n%4$s</string>
-    <string name="copy_now">Copy now (másolás most)</string>
-    <string name="cancel">Cancel (mégse)</string>
-    <string name="copied">Copied! Paste it into the chat.\nMásolva! Illeszd be a beszélgetésbe.</string>
-    <string name="copied_toast">Location copied. Paste it into the chat.\nHelyzet másolva. Illeszd be a beszélgetésbe.</string>
-    <string name="quick_title">Where are you? (hol vagy?)</string>
-    <string name="quick_hint">Your location is copied as soon as the precision is good (at most %1$d s).\nA helyzeted a vágólapra kerül, amint a pontosság jó (legfeljebb %1$d mp).</string>
+
+    <!-- Quick share dialog ("Where are you?" link): English only -->
+    <string name="quick_title">Where are you?</string>
+    <string name="quick_waiting">Waiting for GPS fix…</string>
+    <string name="quick_hint">Your location is copied as soon as the precision is good (at most %1$d s).</string>
+    <string name="quick_precision_good">Good (±%1$d m)</string>
+    <string name="quick_precision_average">Average (±%1$d m)</string>
+    <string name="quick_precision_poor">Poor (±%1$d m)</string>
+    <string name="quick_location_off">Location (GPS) is turned off.</string>
+    <string name="quick_permission_denied">Location permission is required to share your position.</string>
+    <string name="quick_enable_location">Enable location</string>
+    <string name="copy_now">Copy now</string>
+    <string name="cancel">Cancel</string>
+    <string name="copied">Copied! Paste it into the chat.</string>
+    <string name="copied_toast">Location copied. Paste it into the chat.</string>
 </resources>

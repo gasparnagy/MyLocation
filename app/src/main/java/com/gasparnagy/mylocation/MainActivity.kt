@@ -65,8 +65,13 @@ class MainActivity : AppCompatActivity(), LocationTracker.Listener {
         binding.shareButton.isEnabled = true
     }
 
-    override fun onProblem(message: String, action: () -> Unit) {
-        binding.statusText.text = message
+    override fun onProblem(problem: LocationTracker.Problem, action: () -> Unit) {
+        binding.statusText.text = getString(
+            when (problem) {
+                LocationTracker.Problem.LOCATION_OFF -> R.string.status_location_off
+                LocationTracker.Problem.PERMISSION_DENIED -> R.string.status_permission_denied
+            }
+        )
         binding.enableLocationButton.visibility = View.VISIBLE
         binding.enableLocationButton.setOnClickListener { action() }
     }

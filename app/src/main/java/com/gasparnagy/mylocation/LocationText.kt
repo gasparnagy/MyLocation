@@ -7,10 +7,11 @@ import androidx.annotation.StringRes
 import java.util.Locale
 import kotlin.math.roundToInt
 
-enum class Precision(@StringRes val label: Int, @ColorRes val color: Int) {
-    GOOD(R.string.precision_good, R.color.precision_good),
-    AVERAGE(R.string.precision_average, R.color.precision_average),
-    POOR(R.string.precision_poor, R.color.precision_poor);
+/** [label] is used on the bilingual main screen, [quickLabel] on the English-only quick share dialog. */
+enum class Precision(@StringRes val label: Int, @StringRes val quickLabel: Int, @ColorRes val color: Int) {
+    GOOD(R.string.precision_good, R.string.quick_precision_good, R.color.precision_good),
+    AVERAGE(R.string.precision_average, R.string.quick_precision_average, R.color.precision_average),
+    POOR(R.string.precision_poor, R.string.quick_precision_poor, R.color.precision_poor);
 
     companion object {
         private const val GOOD_ACCURACY_METERS = 10f
@@ -35,7 +36,7 @@ object LocationText {
     fun shareText(context: Context, location: Location): String {
         val lat = coordinate(location.latitude)
         val lon = coordinate(location.longitude)
-        val mapsUrl = "https://www.google.com/maps/search/?api=1&query=$lat,$lon"
+        val mapsUrl = "https://www.google.com/maps/search/?api=1&query=$lat%2C$lon"
         return context.getString(R.string.share_text, lat, lon, location.accuracy.roundToInt(), mapsUrl)
     }
 }

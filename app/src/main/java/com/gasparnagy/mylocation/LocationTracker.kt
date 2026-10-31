@@ -29,10 +29,12 @@ import com.google.android.gms.location.Priority
  */
 class LocationTracker(private val activity: AppCompatActivity, private val listener: Listener) {
 
+    enum class Problem { LOCATION_OFF, PERMISSION_DENIED }
+
     interface Listener {
         fun onLocation(location: Location)
         fun onWaitingForFix()
-        fun onProblem(message: String, action: () -> Unit)
+        fun onProblem(problem: Problem, action: () -> Unit)
         fun onProblemResolved()
     }
 
@@ -69,7 +71,7 @@ class LocationTracker(private val activity: AppCompatActivity, private val liste
             if (result.resultCode == Activity.RESULT_OK) {
                 start()
             } else {
-                listener.onProblem(activity.getString(R.string.status_location_off)) { promptEnableLocation() }
+                listener.onProblem(Problem.LOCATION_OFF) { promptEnableLocation() }
             }
         }
 
@@ -86,7 +88,7 @@ class LocationTracker(private val activity: AppCompatActivity, private val liste
                 askedForPermission = true
                 askForPermission()
             } else {
-                listener.onProblem(activity.getString(R.string.status_permission_denied)) { askForPermission() }
+                listener.onProblem(Problem.PERMISSION_DENIED) { askForPermission() }
             }
             return
         }
@@ -102,7 +104,7 @@ class LocationTracker(private val activity: AppCompatActivity, private val liste
                     askedToEnableLocation = true
                     launchEnableLocation(e)
                 } else {
-                    listener.onProblem(activity.getString(R.string.status_location_off)) { promptEnableLocation() }
+                    listener.onProblem(Problem.LOCATION_OFF) { promptEnableLocation() }
                 }
             }
     }

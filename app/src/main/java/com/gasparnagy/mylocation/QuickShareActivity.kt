@@ -8,9 +8,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.gasparnagy.mylocation.databinding.ActivityQuickShareBinding
+import kotlin.math.roundToInt
 
 /**
- * Opened by a https://mylocation.gasparnagy.com/where link: waits for a good fix (or the best one
+ * Opened by a https://mylocation.gasparnagy.com/where-are-you link: waits for a good fix (or the best one
  * within [TIMEOUT_SECONDS]), copies the location to the clipboard and closes, so the user is back
  * in the chat and can paste it.
  */
@@ -51,7 +52,7 @@ class QuickShareActivity : AppCompatActivity(), LocationTracker.Listener {
     }
 
     override fun onWaitingForFix() {
-        if (bestLocation == null) binding.statusText.text = getString(R.string.status_waiting)
+        if (bestLocation == null) binding.statusText.text = getString(R.string.quick_waiting)
         if (!timeoutStarted) {
             timeoutStarted = true
             handler.postDelayed({
@@ -67,7 +68,7 @@ class QuickShareActivity : AppCompatActivity(), LocationTracker.Listener {
         if (best == null || location.accuracy <= best.accuracy) bestLocation = location
         val shown = bestLocation ?: location
 
-        binding.statusText.text = LocationText.precision(this, shown)
+        binding.statusText.text = getString(Precision.of(shown).quickLabel, shown.accuracy.roundToInt())
         binding.statusText.setTextColor(ContextCompat.getColor(this, Precision.of(shown).color))
         binding.copyNowButton.isEnabled = true
 
@@ -75,8 +76,13 @@ class QuickShareActivity : AppCompatActivity(), LocationTracker.Listener {
         if (Precision.of(shown) == Precision.GOOD || timedOut) copyAndClose(shown)
     }
 
-    override fun onProblem(message: String, action: () -> Unit) {
-        binding.statusText.text = message
+    override fun onProblem(problem: LocationTracker.Problem, action: () -> Unit) {
+        binding.statusText.text = getString(
+            when (problem) {
+                LocationTracker.Problem.LOCATION_OFF -> R.string.quick_location_off
+                LocationTracker.Problem.PERMISSION_DENIED -> R.string.quick_permission_denied
+            }
+        )
         binding.enableLocationButton.visibility = View.VISIBLE
         binding.enableLocationButton.setOnClickListener { action() }
     }

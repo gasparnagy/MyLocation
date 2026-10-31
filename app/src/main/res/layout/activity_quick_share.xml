@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:text="@string/status_waiting"
+        android:text="@string/quick_waiting"
         android:textAppearance="?attr/textAppearanceTitleMedium"
         android:textStyle="bold" />
 
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="@string/enable_location"
+        android:text="@string/quick_enable_location"
         android:visibility="gone" />
 
     <LinearLayout
