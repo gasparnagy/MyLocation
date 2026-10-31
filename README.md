@@ -26,6 +26,10 @@ The link opens the app automatically when `.well-known/assetlinks.json` is publi
 Open by default → add `mylocation.gasparnagy.com`. If the app is not installed, the link shows a
 web page with instructions and a download link.
 
+## License
+[MIT](LICENSE). The app shows its version in the bottom right corner of the main screen; tap it for
+the copyright and license.
+
 ## Build
 Requires JDK 17+ and the Android SDK (API 35). Open the project in Android Studio, or run:
 

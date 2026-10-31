@@ -2,6 +2,7 @@ package com.gasparnagy.mylocation
 
 import android.content.Intent
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -10,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.gasparnagy.mylocation.databinding.ActivityMainBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.text.DateFormat
 import java.util.Date
 
@@ -27,12 +29,13 @@ class MainActivity : AppCompatActivity(), LocationTracker.Listener {
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            val padding = (24 * resources.displayMetrics.density).toInt()
-            view.setPadding(bars.left + padding, bars.top + padding, bars.right + padding, bars.bottom + padding)
+            view.setPadding(bars.left, bars.top, bars.right, bars.bottom)
             insets
         }
 
         binding.shareButton.setOnClickListener { shareLocation() }
+        binding.versionText.text = getString(R.string.version, BuildConfig.VERSION_NAME)
+        binding.versionText.setOnClickListener { showAbout() }
     }
 
     override fun onStart() {
@@ -80,6 +83,17 @@ class MainActivity : AppCompatActivity(), LocationTracker.Listener {
         binding.enableLocationButton.visibility = View.GONE
     }
 
+    private fun showAbout() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(getString(R.string.about_title, BuildConfig.VERSION_NAME))
+            .setMessage(R.string.about_text)
+            .setNeutralButton(R.string.about_view_license) { _, _ ->
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(LICENSE_URL)))
+            }
+            .setPositiveButton(R.string.about_ok, null)
+            .show()
+    }
+
     private fun shareLocation() {
         val location = currentLocation ?: return
         val sendIntent = Intent(Intent.ACTION_SEND).apply {
@@ -87,5 +101,9 @@ class MainActivity : AppCompatActivity(), LocationTracker.Listener {
             putExtra(Intent.EXTRA_TEXT, LocationText.shareText(this@MainActivity, location))
         }
         startActivity(Intent.createChooser(sendIntent, getString(R.string.share_chooser_title)))
+    }
+
+    companion object {
+        private const val LICENSE_URL = "https://github.com/gasparnagy/MyLocation/blob/main/LICENSE"
     }
 }
