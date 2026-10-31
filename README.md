@@ -11,9 +11,8 @@ An Android app to share my current location
 - **Share location** button sends the position as text (e.g. to Messages), including a Google Maps link:
 
   ```
-  https://www.google.com/maps/search/?api=1&query=47.497913%2C19.040236
-  My location: 47.497913, 19.040236 (±5 m)
-  Time: 2026-10-31 21:07 UTC+1
+  https://maps.google.com/?q=47.49791%2C19.04024
+  My location: 47.49791, 19.04024 (+/-5 m) at 2026-10-31 21:07 UTC+1
   ```
 
 ## Quick mode ("Where are you?")

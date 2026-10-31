@@ -53,11 +53,15 @@ object LocationText {
         return "${timeFormatter.format(time)} $offset"
     }
 
-    /** The text that is shared or copied: coordinates, accuracy, time of the fix and a Google Maps link. */
+    /**
+     * The text that is shared or copied: a Google Maps link, coordinates, accuracy and time of the fix.
+     * Kept short (5 decimals is ~1 m) so it fits in a single SMS. The comma in the link is encoded
+     * because some keyboards (e.g. SwiftKey) cut detected URLs at a comma.
+     */
     fun shareText(context: Context, location: Location): String {
-        val lat = coordinate(location.latitude)
-        val lon = coordinate(location.longitude)
-        val mapsUrl = "https://www.google.com/maps/search/?api=1&query=$lat%2C$lon"
+        val lat = String.format(Locale.US, "%.5f", location.latitude)
+        val lon = String.format(Locale.US, "%.5f", location.longitude)
+        val mapsUrl = "https://maps.google.com/?q=$lat%2C$lon"
         return context.getString(R.string.share_text, lat, lon, location.accuracy.roundToInt(), timestamp(location.time), mapsUrl)
     }
 }
