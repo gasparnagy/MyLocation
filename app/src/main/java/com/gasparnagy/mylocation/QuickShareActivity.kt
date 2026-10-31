@@ -106,6 +106,6 @@ class QuickShareActivity : AppCompatActivity(), LocationTracker.Listener {
 
     companion object {
         private const val TIMEOUT_SECONDS = 30
-        private const val CLOSE_DELAY_MILLIS = 1_500L
+        private const val CLOSE_DELAY_MILLIS = 2_000L
     }
 }
