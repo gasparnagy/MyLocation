@@ -12,8 +12,19 @@ An Android app to share my current location
 
   ```
   My location: 47.497913, 19.040236 (accuracy ±5 m)
-  https://www.google.com/maps/search/?api=1&query=47.497913,19.040236
+  https://www.google.com/maps/search/?api=1&query=47.497913%2C19.040236
   ```
+
+## Quick mode ("Where are you?")
+Send a family member the link https://mylocation.gasparnagy.com/where-are-you (e.g. in Viber). Tapping it
+opens a small My Location dialog that waits for a good fix (at most 30 seconds, then it takes the
+best one so far), copies the location text to the clipboard and closes. The user is back in the
+chat and only has to paste and send.
+
+The link opens the app automatically when `.well-known/assetlinks.json` is published on the website
+(see below). Otherwise it can be enabled once per phone: Settings → Apps → My Location →
+Open by default → add `mylocation.gasparnagy.com`. If the app is not installed, the link shows a
+web page with instructions and a download link.
 
 ## Build
 Requires JDK 17+ and the Android SDK (API 35). Open the project in Android Studio, or run:
@@ -43,7 +54,7 @@ The `website/` folder holds the files for https://mylocation.gasparnagy.com. Upl
 the web root of that domain:
 
 - `index.html`: download page, always links to the APK of the latest GitHub release
-- `where/index.html`: the "Where are you?" page that can be sent to family members
+- `where-are-you/index.html`: shown when the "Where are you?" link opens in a browser instead of the app
 - `.well-known/assetlinks.json`: proves that the app may open `mylocation.gasparnagy.com` links.
   It must be reachable at `https://mylocation.gasparnagy.com/.well-known/assetlinks.json` over
   HTTPS, without redirects, with `Content-Type: application/json`. Some upload tools skip folders

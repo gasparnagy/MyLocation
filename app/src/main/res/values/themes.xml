@@ -1,3 +1,10 @@
 <resources>
     <style name="Theme.MyLocation" parent="Theme.Material3.DayNight.NoActionBar" />
+
+    <style name="Theme.MyLocation.Dialog" parent="Theme.Material3.DayNight.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+        <item name="android:windowMinWidthMajor">60%</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
 </resources>
