@@ -17,6 +17,11 @@
     <string name="enable_location">Enable location (helymeghatározás bekapcsolása)</string>
     <!-- Keep to SMS (GSM-7) characters, e.g. "+/-" instead of "±", so the text fits in a single SMS. -->
     <string name="share_text">%5$s\nMy location: %1$s, %2$s (+/-%3$d m) at %4$s</string>
+    <string name="version">v%1$s</string>
+    <string name="about_title">My Location %1$s</string>
+    <string name="about_text">Copyright © 2026 Gáspár Nagy\nMIT License (MIT licenc)\n\nSource code (forráskód):\nhttps://github.com/gasparnagy/MyLocation</string>
+    <string name="about_view_license">View license (licenc)</string>
+    <string name="about_ok">OK</string>
 
     <!-- Quick share dialog ("Where are you?" link): English only -->
     <string name="quick_title">Where are you?</string>

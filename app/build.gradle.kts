@@ -11,8 +11,8 @@ android {
         applicationId = "com.gasparnagy.mylocation"
         minSdk = 26
         targetSdk = 35
-        versionCode = 3
-        versionName = "1.2"
+        versionCode = 4
+        versionName = "1.3"
     }
 
     // The release key is provided by CI (see .github/workflows/build.yml). Without it,
@@ -45,6 +45,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     applicationVariants.all {
