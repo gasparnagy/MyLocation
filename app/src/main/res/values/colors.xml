@@ -3,4 +3,5 @@
     <color name="precision_average">#EF8F00</color>
     <color name="precision_poor">#C62828</color>
     <color name="ic_launcher_background">#1565C0</color>
+    <color name="main_background">#F7F9FC</color>
 </resources>

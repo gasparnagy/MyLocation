@@ -11,8 +11,8 @@ android {
         applicationId = "com.gasparnagy.mylocation"
         minSdk = 26
         targetSdk = 35
-        versionCode = 4
-        versionName = "1.3"
+        versionCode = 5
+        versionName = "1.4"
     }
 
     // The release key is provided by CI (see .github/workflows/build.yml). Without it,
